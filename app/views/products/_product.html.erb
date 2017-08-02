@@ -17,7 +17,16 @@
     <% end %>
   </footer>
 
+<!-- if product is sold out, add badge to top left corner -->
+<% if product.quantity == 0 %>
+  <aside class="soldout">
+    <div> SOLD OUT! </div>
+  </aside>
+<% end %>
+
+
   <aside class="price">
     <%= humanized_money_with_symbol product.price %>
   </aside>
+
 </article>
