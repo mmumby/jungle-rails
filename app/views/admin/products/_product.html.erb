@@ -3,6 +3,10 @@
     <%= image_tag product.image.tiny %>
   </td>
   <td>
+    <% if product.quantity == 0 %>
+        <div class="product admin-soldout"><b> SOLD OUT! </b></div>
+    <% end %>
+
     <h4><%= product.name %></h4>
     <br>
     <p><%= product.description %></p>
