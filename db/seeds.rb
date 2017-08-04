@@ -135,7 +135,21 @@ cat3.products.create!({
 
 puts "DONE!"
 
+puts "creating Users"
+
+User.destroy_all
+
+User.create!({
+  first_name: 'Mere',
+  last_name: 'Mumby',
+  email: 'meredith@live.ca',
+  password: 'password',
+  password_confirmation: 'password'
+  })
+
 puts "Adding reviews to products!"
+
+Review.destroy_all
 
 prod1 = Product.find(12)
 prod2 = Product.find(11)
