@@ -134,3 +134,34 @@ cat3.products.create!({
 
 
 puts "DONE!"
+
+puts "Adding reviews to products!"
+
+prod1 = Product.find(12)
+prod2 = Product.find(11)
+
+prod1.reviews.create! ({
+  user_id: 1,
+  description: 'Ugh, the books fall off.',
+  rating: 1
+  })
+
+prod1.reviews.create! ({
+  user_id: 1,
+  description: 'I get so many compliments on my Bookshelf! All my friends love it',
+  rating: 5
+  })
+
+prod2.reviews.create! ({
+  user_id: 1,
+  description: 'Painful.',
+  rating: 1
+  })
+
+prod2.reviews.create! ({
+  user_id: 1,
+  description: 'Great for the in-laws. Would purchase again.',
+  rating: 4
+  })
+
+puts "DONE"
