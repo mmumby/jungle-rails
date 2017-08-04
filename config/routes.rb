@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show]
 
-  resources(:product) do
+  resources(:products) do
     resources(:reviews, {only: [:create]})
   end
 
