@@ -1,15 +1,16 @@
 
-<%= form_for(@user) do |f| %>
+  <%= form_for [@user] do |f| %>
   <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <div class="alert alert-danger">
+            <strong>The following errors prevented saving:</strong>
+            <ul>
+              <% @user.errors.full_messages.each do |error| %>
+                <li><%= error %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
   <div class="form-group">
   <div>
     <h4>First Name</h4><%= f.text_field :first_name, class: 'form-control'%>
