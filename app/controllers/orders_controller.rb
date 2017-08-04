@@ -37,6 +37,7 @@ class OrdersController < ApplicationController
       currency:    'cad'
     )
   end
+end
 
   def create_order(stripe_charge)
     order = Order.new(
