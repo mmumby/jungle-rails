@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show]
 
   resources(:products) do
-    resources(:reviews, {only: [:create]})
+    resources(:reviews, {only: [:create, :delete]})
   end
 
   resources :categories, only: [:show]
