@@ -1,18 +1,36 @@
 
-<!-- loop through reviews and show on page -->
-<% @product.reviews.each do |review| %>
-  <div class="col-sm-8">
-    <dl class="dl-horizontal">
-      <dt>Name</dt>
-      <dd><%= review.user_id %></dd>
-      <dt>rating</dt>
-      <dd><%= review.rating %></dd>
-      <dt>Description</dt>
-      <dd><%= review.description %></dd>
-    </dl>
-  </div>
-<% end %>
-  <div class="col-sm-6 col-sm-offset-1">
-    <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
-  </div>
+<!-- loop through reviews and show on page in order of newest first -->
+<!-- alternate sides of comments as they are added to the page. -->
+<% new_review = true %>
+<% @product.reviews.order(created_at: :desc).each do |review| %>
+<div class="container">
+  <ul class="timeline">
+  <% if new_review %>
+    <li class="timeline">
+  <% else %>
+    <li class="timeline-inverted">
+  <% end %>
+  <% new_review = !new_review %>
+      <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <% if current_user == review.user %>
+              <%= link_to fa_icon('trash'), [review], class: 'pull-right delete btn btn-lg btn-danger',
+              method: :delete, data: { confirm: "Are you sure?" } %>
+            <% end %>
+            <h4 class="timeline-title">Review <%(1..(review.rating)).each do |i| %>
+            <%= fa_icon 'star' %>
+            <% end %></h4>
+            <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>
+            <%= review.created_at.to_formatted_s(:long) %></small></p>
+          <div class="timeline-body">
+          <p><%= review.description %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</div>
 
+
+  <% end %>

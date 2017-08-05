@@ -28,6 +28,9 @@
     <% if current_user %>
       <%= render 'reviewform' %>
     <% end %>
+    <header class="page-header">
+    <h1><%= pluralize(@product.reviews.count, 'Customer Review')%></h1>
+  </header>
     <%= render 'reviews' %>
   </article>
 </section>
