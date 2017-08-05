@@ -1,6 +1,7 @@
 
 <!-- loop through reviews and show on page in order of newest first -->
 <!-- alternate sides of comments as they are added to the page. -->
+<!-- if the comments have less than two stars change timeline badge -->
 <% new_review = true %>
 <% @product.reviews.order(created_at: :desc).each do |review| %>
 <div class="container">
@@ -11,7 +12,11 @@
     <li class="timeline-inverted">
   <% end %>
   <% new_review = !new_review %>
-      <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
+    <% if review.rating > 2 %>
+      <div class="timeline-badge"><i class="glyphicon glyphicon-ok"></i></div>
+    <% else %>
+      <div class="timeline-badge"><i class="glyphicon glyphicon-remove"></i></div>
+    <% end %>
         <div class="timeline-panel">
           <div class="timeline-heading">
             <% if current_user == review.user %>
@@ -31,6 +36,4 @@
     </div>
   </li>
 </div>
-
-
-  <% end %>
+<% end %>
