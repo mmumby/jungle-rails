@@ -140,9 +140,9 @@ puts "creating Users"
 User.destroy_all
 
 User.create!({
-  first_name: 'Mere',
-  last_name: 'Mumby',
-  email: 'meredith@live.ca',
+  first_name: 'User',
+  last_name: 'User',
+  email: 'user@gmail.com',
   password: 'password',
   password_confirmation: 'password'
   })
